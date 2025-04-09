@@ -1,16 +1,16 @@
-#ifndef OBJECT_H
-#define OBJECT_H
+#ifndef PARTICLE_H
+#define PARTICLE_H
 
 #include "core.h"
 #include "precision.h"
 
 using namespace wengine;
 
-class Object
+class Particle
 {
 public:
-    Object();
-    Object(const Vector3 &p, const Vector3 &v, const Vector3 &a, const real iM, const real d = static_cast<real>(0.995))
+    Particle();
+    Particle(const Vector3 &p, const Vector3 &v, const Vector3 &a, const real iM, const real d = static_cast<real>(0.995))
         : m_position(p), m_velocity(v), m_acceleration(a), m_inverseMass(iM), m_damping(d) {}
 
     /**
@@ -72,4 +72,4 @@ private:
     real m_damping;
 };
 
-#endif // OBJECT_H
+#endif // PARTICLE_H
