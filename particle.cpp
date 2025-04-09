@@ -1,4 +1,4 @@
-#include "object.h"
+#include "particle.h"
 #include <assert.h>
 
 using namespace wengine;
@@ -8,7 +8,7 @@ using namespace wengine;
  * change. That is just an approximation, because in the real world these values are continuous. 
  */
 
-void Object::integrate(real duration)
+void Particle::integrate(real duration)
 {
     // Ensures that integration step is meaningful
     assert(duration > static_cast<real>(0.0));
