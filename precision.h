@@ -7,7 +7,10 @@ namespace wengine {
   typedef float real;
 
   // Defines the precision of the square root operator
-  #define real_sqrt sqrtf
+  # define real_sqrt sqrtf
+
+  // Defines the precision of the pow operator
+  # define real_pow powf
 }
 
 #endif // PRECISION_H
