@@ -8,24 +8,24 @@ namespace wengine {
     class Vector3
     {
     public:
-        Vector3() : x(0), y(0), z(0) {}
-        Vector3(const real x, const real y, const real z) : x(x), y(y), z(z) {}
+        Vector3() : m_x(0), m_y(0), m_z(0) {}
+        Vector3(const real x, const real y, const real z) : m_x(x), m_y(y), m_z(z) {}
 
         void invert()
         {
-            x = -x;
-            z = -z;
-            y = -y;
+            m_x = -m_x;
+            m_z = -m_z;
+            m_y = -m_y;
         }
 
         real magnitude() const
         {
-            return real_sqrt(x*x + y*y + z*z);
+            return real_sqrt(m_x*m_x + m_y*m_y + m_z*m_z);
         }
 
         real squareMagnitude() const
         {
-            return x*x + y*y + z*z;
+            return m_x*m_x + m_y*m_y + m_z*m_z;
         }
 
         void normalize()
@@ -39,104 +39,86 @@ namespace wengine {
 
         void operator*=(const real s)
         {
-            x *= s;
-            y *= s;
-            z *= s;
+            m_x *= s;
+            m_y *= s;
+            m_z *= s;
         }
 
         Vector3 operator*(const real s) const
         {
-            return Vector3(x*s, y*s, z*s);
+            return Vector3(m_x*s, m_y*s, m_z*s);
         }
 
         void operator+=(const Vector3 &v)
         {
-            x += v.x;
-            z += v.z;
-            y += v.y;
+            m_x += v.getX();
+            m_z += v.getZ();
+            m_y += v.getY();
         }
 
         Vector3 operator+(const Vector3 &v) const
         {
-            return Vector3(x+v.x, y+v.y, z+v.z);
+            return Vector3(m_x+v.getX(), m_y+v.getY(), m_z+v.getZ());
         }
 
         void operator-=(const Vector3 &v)
         {
-            x -= v.x;
-            z -= v.z;
-            y -= v.y;
+            m_x -= v.getX();
+            m_z -= v.getZ();
+            m_y -= v.getY();
         }
 
         Vector3 operator-(const Vector3 &v) const
         {
-            return Vector3(x-v.x, y-v.y, z-v.z);
+            return Vector3(m_x-v.getX(), m_y-v.getY(), m_z-v.getZ());
         }
 
         void addScaledVector(const Vector3 &v, real s)
         {
-            x = v.x * s;
-            y = v.y * s;
-            z = v.z * s;
+            m_x = v.getX() * s;
+            m_y = v.getY() * s;
+            m_z = v.getZ() * s;
         }
 
         Vector3 vectorProduct(const Vector3 &v) const
         {
-            return Vector3(y*v.z - z*v.y, z*v.x - x*v.z, x*v.y - y*v.x);
+            return Vector3(m_y*v.getZ() - m_z*v.getY(), m_z*v.getX() - m_x*v.getZ(), m_x*v.getY() - m_y*v.getX());
         }
 
         void vectorProduct(const Vector3 &v)
         {
-            x = y*v.z - z*v.y;
-            y = z*v.x - x*v.z;
-            z = x*v.y - y*v.x;
+            m_x = m_y*v.getZ() - m_z*v.getY();
+            m_y = m_z*v.getX() - m_x*v.getZ();
+            m_z = m_x*v.getY() - m_y*v.getX();
         }
 
        real scalarProduct(const Vector3 &v) const
        {
-           return x*v.x + y*v.y + z*v.z;
+           return m_x*v.getX() + m_y*v.getY() + m_z*v.getZ();
        }
 
        real operator*(const Vector3 &v) const
        {
-           return x*v.x + y*v.y + z*v.z;
+           return m_x*v.getX() + m_y*v.getY() + m_z*v.getZ();
        }
 
-       real getX() const
-       {
-           return x;
-       }
+       real getX() const { return m_x; }
 
-       real getY() const
-       {
-           return y;
-       }
+       real getY() const { return m_y; }
 
-       real getZ() const
-       {
-           return z;
-       }
+       real getZ() const { return m_z; }
 
-       void setX(const real s)
-       {
-           x = s;
-       }
+       void setX(const real s) { m_x = s; }
 
-       void setY(const real s)
-       {
-           y = s;
-       }
+       void setY(const real s) { m_y = s; }
 
-       void setZ(const real s)
-       {
-           z = s;
-       }
+       void setZ(const real s) { m_z = s; }
 
 
     private:
-        real x;
-        real y;
-        real z;
+        real m_x;
+        real m_y;
+        real m_z;
     };
 }
 
